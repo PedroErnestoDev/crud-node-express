@@ -73,4 +73,3 @@ npx nodemon server.js
 ```
 
 O servidor iniciará e estará pronto para receber requisições na porta configurada no seu código.
-```
