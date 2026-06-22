@@ -1,47 +1,48 @@
-const db = require("../db/connection");
+const User = require("../models/User");
 
 class UserModel {
 
     static async findAll(){
-        const [rows] = await db.query(
-            "SELECT nome, email, criado_em FROM usuarios"
-        );
-
-        return rows;
+        return await User.findAll({
+            attributes: ["nome", "email", "criado_em"]
+        });
     }
 
     static async findById(id){
-        const [rows] = await db.query(
-            "SELECT nome, email, criado_em FROM usuarios WHERE id_usuario =?", [id]
-        );
-
-        return rows[0];
+        return await User.findByPk(id, {
+            attributes: ["nome", "email", "criado_em"]
+        });
     }
 
     static async createUser(nome, email, senha){
-        const [result] = await db.query(
-            `INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)`, [nome, email, senha]
-        );
-
-        return result;
+        return await User.create({
+            nome,
+            email,
+            senha
+        })
     }
 
     static async deleteUser(id){
-        const [result] = await db.query(
-            "DELETE FROM usuarios WHERE id_usuario =?", [id]
-        );
-
-        return result;
+        return await User.destroy({
+            where: {
+                id_usuario: id
+            }
+        });
     }
 
     static async uptadeUser(nome, email, senha, id){
-        const [result] = await db.query(
-            "UPDATE usuarios SET nome = ?, email = ?, senha = ? WHERE id_usuario =?", [nome, email, senha, id]
+        return await User.update({
+            nome,
+            email,
+            senha
+        },
+        {
+            where: {
+                id_usuario: id
+            }
+        }
         )
-
-        return result;
     }
-
 }
 
 module.exports = UserModel;
