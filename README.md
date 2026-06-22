@@ -30,7 +30,7 @@ TASKFLOW/
 
 ## 🗄️ Estrutura do Banco de Dados
 
-A API interage com o banco de dados chamado `teste`, utilizando a tabela `usuarios`. Abaixo estão os campos que compõem a estrutura do usuário:
+A API interage com o banco de dados chamado `taskflow`, utilizando a tabela `usuarios`. Abaixo estão os campos que compõem a estrutura do usuário:
 
 | Campo | Tipo | Atributos | Descrição |
 | :--- | :--- | :--- | :--- |
